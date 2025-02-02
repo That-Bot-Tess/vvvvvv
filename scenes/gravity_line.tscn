@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://di1xpckgpyhwu"]
+
+[ext_resource type="Script" path="res://assets/scripts/GravityLine.cs" id="1_e64tg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7hgv"]
+size = Vector2(5, 10)
+
+[node name="GravityLine" type="Area2D"]
+script = ExtResource("1_e64tg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_x7hgv")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 10)
+width = 1.0
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

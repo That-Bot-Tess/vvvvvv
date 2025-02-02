@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0wxi41iiegls"]
+
+[ext_resource type="Script" path="res://assets/scripts/TriggerZone.cs" id="1_340g4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_puweq"]
+a = Vector2(-25, 1)
+b = Vector2(25, 1)
+
+[node name="TriggerZone" type="Area2D"]
+script = ExtResource("1_340g4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_puweq")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
