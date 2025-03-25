@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bnsph3lu1vvtu"]
 
 [ext_resource type="Texture2D" uid="uid://cxdy26dmlqhx8" path="res://assets/sprites/spike.png" id="1_kh67v"]
-[ext_resource type="Script" path="res://assets/scripts/Spike.cs" id="1_pov6d"]
+[ext_resource type="Script" path="res://assets/scripts/Hazard.cs" id="1_wn3yg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdd40"]
 size = Vector2(8, 8)
 
 [node name="StaticBody2D" type="Area2D"]
-script = ExtResource("1_pov6d")
+script = ExtResource("1_wn3yg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 0)
