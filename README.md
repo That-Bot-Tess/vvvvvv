@@ -26,7 +26,7 @@ Goal: Create all the game's signature objects.
 - **gravity lines**: Done!
 - **enemies**: Done!
 - **warping rooms**: Functionality complete for vertical extremes. Room background still required.
-- **moving platforms**: Not yet implemented. 
+- **moving platforms**: Work, but are moved by the player, which should not occur.
 - **disappearing platforms**: Not yet implemented.
 - **conveyor belts**: Attempted, but failed. Might return to last.
 - **terminals**: Not yet implemented.

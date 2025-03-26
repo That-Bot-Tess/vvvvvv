@@ -33,5 +33,15 @@ public partial class GameManager : Node2D
 			camera.Position = new(camera.Position.X - roomWidth - padding * 2, camera.Position.Y);
 			roomX--;
 		}
-	}
+        if (player.Position.Y > (roomHeight + padding) * roomY)
+        {
+            camera.Position = new(camera.Position.X, camera.Position.Y + roomHeight + padding * 2);
+            roomY++;
+        }
+        if (player.Position.Y < (roomHeight + padding) * (roomY - 1))
+        {
+            camera.Position = new(camera.Position.X, camera.Position.Y - roomHeight - padding * 2);
+            roomY--;
+        }
+    }
 }

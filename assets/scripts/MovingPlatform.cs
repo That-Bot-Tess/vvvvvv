@@ -1,69 +1,75 @@
 using Godot;
 using System;
 
-public partial class Enemy : Hazard
+public partial class MovingPlatform : CharacterBody2D
 {
-    [Export] string direction;
-    [Export] int travelDistance;
+	[Export] string direction;
+	[Export] int travelDistance;
 
-    int maxTravelDistance;
-    int movementSpeed = 2;
+	int maxTravelDistance;
+    Vector2 linearVelocity;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		ResetTravelDistance();
+		switch (direction)
+		{
+			case "up":
+                linearVelocity = new(0, -100);
+				break;
+			case "down":
+                linearVelocity = new(0, 100);
+				break;
+			case "left":
+                linearVelocity = new(-100, 0);
+				break;
+			case "right":
+                linearVelocity = new(100, 0);
+				break;
+		}
+	}
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        ResetTravelDistance();
-        GetChild<AnimatedSprite2D>(1).Play();
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-        Vector2 position = Position;
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
         switch (direction)
         {
             case "up":
-                position.Y -= movementSpeed;
-                if (position.Y <= maxTravelDistance)
-                {
+                if (Position.Y <= maxTravelDistance) {
+                    linearVelocity *= -1;
                     direction = "down";
                     ResetTravelDistance();
                 }
                 break;
             case "down":
-                position.Y += movementSpeed;
-                if (position.Y >= maxTravelDistance)
-                {
+                if (Position.Y >= maxTravelDistance) {
+                    linearVelocity *= -1;
                     direction = "up";
                     ResetTravelDistance();
                 }
-
                 break;
             case "right":
-                position.X += movementSpeed;
-                if (position.X >= maxTravelDistance)
-                {
+                if (Position.X >= maxTravelDistance) {
+                    linearVelocity *= -1;
                     direction = "left";
                     ResetTravelDistance();
                 }
-
                 break;
             case "left":
-                position.X -= movementSpeed;
-                if (position.X <= maxTravelDistance)
-                {
+                if (Position.X <= maxTravelDistance) {
+                    linearVelocity *= -1;
                     direction = "right";
                     ResetTravelDistance();
                 }
-
                 break;
         }
 
-        Position = position;
+        Velocity = linearVelocity;
+        MoveAndSlide();
     }
-
     private void ResetTravelDistance()
     {
+        if (travelDistance < 0) return;
         switch (direction)
         {
             case "up":

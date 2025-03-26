@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
 	private int flipFactor = 1;
 	private Vector2 startPosition;
 	private Vector2 velocity;
+	private Vector2 maxFallSpeed;
 
     public override void _Ready()
     {
